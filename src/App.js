@@ -1,29 +1,38 @@
-import {useState} from 'react'
-import TodoItem from './components/todoItem/TodoItem'
+
+import {
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+import About from './components/routing/About'
+import Home from './components/routing/Home'
+import Service from './components/routing/Service'
+
+
 function App() {
-  const [todoList,setTodoList] = useState([])
-
-  function addTodo() {
-    const value = document.getElementById('todoInp').value
-    const tempTodo = {
-      todo : value,
-      id : Math.floor(Math.random()*10000)
-    }
-    const tempList = [...todoList]
-    tempList.push(tempTodo)
-
-
-    setTodoList(tempList)
-  }
   return (
-    
+
     <div >
-      <input type="input" id="todoInp"  />
-      <button  onClick={addTodo}>Add</button>
-      <div>
-        {todoList.map(val => <TodoItem todoData={val} />)}
-        
-      </div>
+
+      <Switch>
+        <Route path='/home'>
+          <Home />
+        </Route>
+        <Route path='/about'>
+          <About />
+        </Route>
+        <Route path='/service'>
+          <Service />
+        </Route>
+      </Switch>
+
+
+      <button ><Link to='/home'> Home </Link></button>
+      <button><Link to='/about'> About</Link></button>
+      <button> <Link to='/service'>Service</Link></button>
+
+
 
     </div>
   );
